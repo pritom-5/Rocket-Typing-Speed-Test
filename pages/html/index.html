@@ -6,14 +6,23 @@
 		<link rel="stylesheet" href="../css/style.css" />
 	</head>
 	<body>
+		<button id="start">Start</button>
+		<button id="test_btn">test</button>
 		<div id="">
-			<span id="highlighted_text" class="highlighted_text">test</span>
+			<span id="highlighted_text" class="highlighted_text"></span>
 			<span id="text_display" class="text_display"></span>
 		</div>
 		<div id="input_field">
-			<input id="word_input" type="text" name="word_input" />
+			<input
+				id="word_input"
+				type="text"
+				name="word_input"
+				disabled="true"
+			/>
 		</div>
 	</body>
 	<script type="module" src="../js/index.js" defer></script>
 	<script type="module" src="../js/checkInput.js" defer></script>
+	<script type="module" src="../js/selectors.js" defer></script>
+	<script type="module" src="../js/utils.js" defer></script>
 </html>
