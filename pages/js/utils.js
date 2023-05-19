@@ -18,5 +18,5 @@ export function countWPM(timeInSec, noOfWords) {
 	const WPM = (60 / timeInSec) * noOfWords;
 	console.log(`WPM: ${WPM}`);
 
-	// return WPM
+	return WPM;
 }

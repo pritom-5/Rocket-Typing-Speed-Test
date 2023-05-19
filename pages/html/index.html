@@ -20,9 +20,24 @@
 				disabled="true"
 			/>
 		</div>
+
+		<!-- dialog modal for retry and submit -->
+		<dialog id="retry_modal" class="retry_modal">
+			<div class="retry_modal_container">
+				<h2>Congrats!</h2>
+				<div id="type_test_info"></div>
+				<p>To add test result to the global dashboard submit</p>
+				<p>To try again retry</p>
+				<div class="buttons">
+					<button id="submit_result">submit</button>
+					<button id="retry">retry</button>
+				</div>
+			</div>
+		</dialog>
 	</body>
 	<script type="module" src="../js/index.js" defer></script>
 	<script type="module" src="../js/checkInput.js" defer></script>
 	<script type="module" src="../js/selectors.js" defer></script>
 	<script type="module" src="../js/utils.js" defer></script>
+	<script type="module" src="../js/retryModal.js" defer></script>
 </html>

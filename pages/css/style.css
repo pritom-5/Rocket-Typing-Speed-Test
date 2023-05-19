@@ -2,3 +2,7 @@
 	background: green;
 	color: white;
 }
+.bold {
+	font-weight: 700;
+	font-size: 24px;
+}

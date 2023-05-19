@@ -1,3 +1,4 @@
+import retryModalToggle, { setDynamicDataToModal } from "./retryModal.js";
 import {
 	startBtn,
 	highlightedTextDisplay,
@@ -6,7 +7,7 @@ import {
 } from "./selectors.js";
 import { countWPM, getClock } from "./utils.js";
 
-const practiceText = "this is the extended version of the words to practice";
+const practiceText = "this is the extended";
 
 export function toggleInputAndStartBtn() {
 	wordInput.disabled = !wordInput.disabled;
@@ -25,15 +26,23 @@ textDisplay.innerText = practiceText;
 
 // split practiceText into array items
 // this array is for initial dom
-const practiceTextArr = practiceText.split(" ").map((word, index, arr) => {
-	if (index === arr.length - 1) return word;
-	return `${word} `;
-});
-// later this array is edited
-const practiceTextArr_copy = [...practiceTextArr];
-const highlightedTextArr = [];
+let practiceTextArr = [];
+let practiceTextArr_copy = [];
+let highlightedTextArr = [];
 
 let currentWord = 0;
+
+function resetPracticeSession() {
+	currentWord = 0;
+	practiceTextArr = practiceText.split(" ").map((word, index, arr) => {
+		if (index === arr.length - 1) return word;
+		return `${word} `;
+	});
+	// later this array is edited
+	practiceTextArr_copy = [...practiceTextArr];
+	highlightedTextArr = [];
+}
+resetPracticeSession();
 
 function setHighlightedText() {
 	// remove highlighted portion from practiceTextArr
@@ -45,8 +54,14 @@ function setHighlightedText() {
 		toggleInputAndStartBtn();
 		// stop clock
 		const timeElapsed = getClock(false);
+		const totalWords = practiceTextArr.length;
 		// count rpm
-		countWPM(timeElapsed, practiceTextArr.length);
+		const WPM = countWPM(timeElapsed, totalWords);
+		// show additional dynamic data to modal
+		setDynamicDataToModal(timeElapsed, WPM, totalWords);
+		// show retrymodal
+		retryModalToggle();
+		resetPracticeSession();
 	}
 
 	textDisplay.innerText = practiceTextArr_copy.join("");
