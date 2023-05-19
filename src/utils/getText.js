@@ -6,10 +6,7 @@ export default async function getText(length) {
 
 	const randomIndex = getRandomIndex(data.textArr.length, length);
 
-	const slicedTextArr = data.textArr.slice(
-		randomIndex,
-		randomIndex + (length + 1)
-	);
+	const slicedTextArr = data.textArr.slice(randomIndex, randomIndex + length);
 
 	return slicedTextArr.join(" ");
 }

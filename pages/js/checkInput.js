@@ -5,9 +5,7 @@ import {
 	wordInput,
 	textDisplay,
 } from "./selectors.js";
-import { countWPM, getClock } from "./utils.js";
-
-const practiceText = "this is the extended";
+import { countWPM, getClock, getRandomText } from "./utils.js";
 
 export function toggleInputAndStartBtn() {
 	wordInput.disabled = !wordInput.disabled;
@@ -21,9 +19,6 @@ startBtn.addEventListener("click", () => {
 	getClock(true);
 });
 
-// initially set text to dom
-textDisplay.innerText = practiceText;
-
 // split practiceText into array items
 // this array is for initial dom
 let practiceTextArr = [];
@@ -32,15 +27,20 @@ let highlightedTextArr = [];
 
 let currentWord = 0;
 
-function resetPracticeSession() {
+async function resetPracticeSession() {
 	currentWord = 0;
+	const practiceText = await getRandomText();
+
 	practiceTextArr = practiceText.split(" ").map((word, index, arr) => {
-		if (index === arr.length - 1) return word;
+		if (index === arr.length - 1) return `${word}`;
 		return `${word} `;
 	});
 	// later this array is edited
 	practiceTextArr_copy = [...practiceTextArr];
 	highlightedTextArr = [];
+
+	textDisplay.innerText = practiceText;
+	highlightedTextDisplay.innerText = "";
 }
 resetPracticeSession();
 

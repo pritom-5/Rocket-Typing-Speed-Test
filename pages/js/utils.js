@@ -19,3 +19,10 @@ export function countWPM(timeInSec, noOfWords) {
 
 	return WPM;
 }
+
+export async function getRandomText() {
+	const response = await fetch("/getRandomText");
+	const data = await response.json();
+
+	return data.text;
+}
