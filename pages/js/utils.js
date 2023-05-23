@@ -26,3 +26,18 @@ export async function getRandomText() {
 
 	return data.text;
 }
+
+export async function postData(data, url) {
+	const requestobj = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	};
+
+	const response = await fetch(url, requestobj);
+	const responseData = await response.json();
+
+	return responseData;
+}

@@ -5,6 +5,7 @@ import {
 	addToLeaderboardBtn,
 	usernameSubmitSection,
 } from "./selectors.js";
+import { postData } from "./utils.js";
 
 let WPM;
 let WORDSCOUNT;
@@ -36,17 +37,27 @@ retryBtn.addEventListener("click", retryModalToggle);
 // input field -> username
 // big submit button on this click { username, wpm, date, time } should be submitted to the backend
 
-function getUsernameOnSubmit(usernameInput) {
+async function getUsernameOnSubmit(usernameInput) {
 	const usernameInputValue = usernameInput.value;
 
 	if (usernameInputValue.trim().length === 0) return;
-	console.log(
-		`username: ${usernameInputValue}, ${WPM}, ${WORDSCOUNT}, ${TIME}`
-	);
+
+	const userInfoObj = {
+		username: usernameInputValue,
+		wpm: WPM,
+		wordscount: WORDSCOUNT,
+		time: TIME,
+	};
+
+	const responseData = await postData(userInfoObj, "/postUserInfo");
+
+	// TODO:
+	// add some notification to show the data is added to the global board
+
+	console.log(responseData);
 }
 
 function showAdditionalInputFieldInModal() {
-	console.log("additional");
 	const usernameSubmitSectionHtml = `<div id="username_input_section">
 						<input
 							id="username_input"

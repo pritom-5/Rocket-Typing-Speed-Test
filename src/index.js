@@ -6,6 +6,7 @@ import getDirectory from "./utils/getDirectory.js";
 const app = express();
 
 dotenv.config();
+app.use(express.json())
 
 const pagesFilePath = getDirectory("../../../pages");
 
