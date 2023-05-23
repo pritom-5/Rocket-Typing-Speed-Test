@@ -44,6 +44,13 @@ export async function postData(data, url) {
 	return responseData;
 }
 
+export async function getData(url) {
+	const response = await fetch(url);
+	const responseData = await response.json();
+
+	return responseData;
+}
+
 // type -> right / wrong / neutral
 let timeout;
 export function showNotification(header, type = "neutral") {

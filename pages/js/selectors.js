@@ -18,3 +18,23 @@ export const usernameSubmitSection = document.querySelector(
 );
 
 export const body = document.querySelector("body");
+
+// leaderboards
+
+export const globalLeaderboardBtn = document.querySelector(
+	"#global_leaderboard_btn"
+);
+export const personalLeaderboardBtn = document.querySelector(
+	"#personal_leaderboard_btn"
+);
+export const personalLeaderboardTable = document.querySelector(
+	"#personal_leaderboard_table"
+);
+
+export const globalLeaderboardTable = document.querySelector(
+	"#global_leaderboard_table"
+);
+
+export const leaderboardSection = document.querySelector(
+	"#leaderboard_section"
+);
