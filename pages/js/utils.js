@@ -1,3 +1,5 @@
+import { body } from "./selectors.js";
+
 let interval;
 let clockCount = 0;
 
@@ -40,4 +42,24 @@ export async function postData(data, url) {
 	const responseData = await response.json();
 
 	return responseData;
+}
+
+// type -> right / wrong / neutral
+let timeout;
+export function showNotification(header, type = "neutral") {
+	const notificationMessage = `<h3>${header}</h3>`;
+
+	const notificationElement = document.createElement("div");
+	notificationElement.classList.add("notification_section");
+	notificationElement.setAttribute("id", "notification_section");
+	notificationElement.innerHTML = notificationMessage;
+
+	body.appendChild(notificationElement);
+
+	const notificationSection = document.querySelector("#notification_section");
+	console.log(notificationSection.classList);
+
+	timeout = setTimeout(() => {
+		body.removeChild(notificationElement);
+	}, 5000);
 }

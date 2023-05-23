@@ -5,7 +5,7 @@ import {
 	addToLeaderboardBtn,
 	usernameSubmitSection,
 } from "./selectors.js";
-import { postData } from "./utils.js";
+import { postData, showNotification } from "./utils.js";
 
 let WPM;
 let WORDSCOUNT;
@@ -55,6 +55,18 @@ async function getUsernameOnSubmit(usernameInput) {
 	// add some notification to show the data is added to the global board
 
 	console.log(responseData);
+
+	let type;
+	if (responseData.status !== 200) {
+		type = "wrong";
+	} else {
+		type = "right";
+	}
+
+	showNotification(responseData.message, type);
+
+	// close dialog
+	retryModalToggle();
 }
 
 function showAdditionalInputFieldInModal() {

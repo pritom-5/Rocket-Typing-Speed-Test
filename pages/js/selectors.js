@@ -16,3 +16,5 @@ export const typeTestInfo = document.querySelector("#type_test_info");
 export const usernameSubmitSection = document.querySelector(
 	"#username_submit_section"
 );
+
+export const body = document.querySelector("body");
