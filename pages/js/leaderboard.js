@@ -61,3 +61,6 @@ async function toggleGlobalTable() {
 toggleGlobalTable();
 
 globalLeaderboardBtn.addEventListener("click", toggleGlobalTable);
+
+// TODO:
+// make todays leaderboard
