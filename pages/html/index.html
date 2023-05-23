@@ -5,9 +5,11 @@
 		<title></title>
 		<link rel="stylesheet" href="../css/style.css" />
 	</head>
+
 	<body>
 		<button id="start">Start</button>
 		<button id="test_btn">test</button>
+		<button id="reset_btn">reset</button>
 		<div id="">
 			<span id="highlighted_text" class="highlighted_text"></span>
 			<span id="text_display" class="text_display"></span>
@@ -29,9 +31,13 @@
 				<p>To add test result to the global dashboard submit</p>
 				<p>To try again retry</p>
 				<div class="buttons">
-					<button id="submit_result">submit</button>
+					<button id="add_to_leaderboard_btn">
+						Add to leaderboard
+					</button>
 					<button id="retry">retry</button>
 				</div>
+				<!-- user input comes dynamically -->
+				<div id="username_submit_section"></div>
 			</div>
 		</dialog>
 	</body>

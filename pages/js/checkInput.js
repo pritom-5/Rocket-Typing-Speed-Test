@@ -4,6 +4,7 @@ import {
 	highlightedTextDisplay,
 	wordInput,
 	textDisplay,
+	resetBtn,
 } from "./selectors.js";
 import { countWPM, getClock, getRandomText } from "./utils.js";
 
@@ -17,6 +18,10 @@ startBtn.addEventListener("click", () => {
 	wordInput.focus();
 	// start clock
 	getClock(true);
+});
+
+resetBtn.addEventListener("click", () => {
+	resetPracticeSession();
 });
 
 // split practiceText into array items

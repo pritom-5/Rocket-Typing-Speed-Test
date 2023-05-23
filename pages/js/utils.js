@@ -17,7 +17,7 @@ export function getClock(start) {
 export function countWPM(timeInSec, noOfWords) {
 	const WPM = (60 / timeInSec) * noOfWords;
 
-	return WPM;
+	return Math.ceil(WPM);
 }
 
 export async function getRandomText() {
