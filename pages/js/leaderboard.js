@@ -1,7 +1,11 @@
-import { globalLeaderboardBtn, leaderboardSection } from "./selectors.js";
+import {
+	globalLeaderboardBtn,
+	leaderboardSection,
+	todaysLeaderboardBtn,
+} from "./selectors.js";
 import { getData } from "./utils.js";
 
-function makeGlobalTable(dataArr) {
+function makeTable(dataArr) {
 	const makeTableRows = () => {
 		let rows = "";
 		dataArr.forEach((item) => {
@@ -36,10 +40,10 @@ function makeGlobalTable(dataArr) {
 
 // toggle personal table
 async function toggleGlobalTable() {
-	const globalTable = document.querySelector("#global_leaderboard_table");
-	console.log(globalTable);
-
+	// highlight todaysTableButton
 	globalLeaderboardBtn.classList.toggle("highlighted_text");
+
+	const globalTable = document.querySelector("#global_leaderboard_table");
 
 	// check wheather the element is in the dom
 	if (!globalTable) {
@@ -47,11 +51,10 @@ async function toggleGlobalTable() {
 		globalTableElement.setAttribute("id", "global_leaderboard_table");
 
 		const globalLeaderboardData = await getData("/getLeaderboard");
-		const globalTableHtml = makeGlobalTable(
+		const globalTableHtml = makeTable(
 			globalLeaderboardData.leaderboardData
 		);
 		globalTableElement.innerHTML = globalTableHtml;
-		console.log(globalTableHtml);
 
 		leaderboardSection.appendChild(globalTableElement);
 	} else {
@@ -60,7 +63,36 @@ async function toggleGlobalTable() {
 }
 toggleGlobalTable();
 
-globalLeaderboardBtn.addEventListener("click", toggleGlobalTable);
-
 // TODO:
 // make todays leaderboard
+
+async function toggeTodaysTable() {
+	todaysLeaderboardBtn.classList.toggle("highlighted_text");
+
+	const todaysTable = document.querySelector("#todays_leaderboard_table");
+
+	// check wheather the element is in the dom
+	if (!todaysTable) {
+		const todaysTableElement = document.createElement("div");
+		todaysTableElement.setAttribute("id", "todays_leaderboard_table");
+
+		const todaysLeaderboardData = await getData("/getTodaysLeaderboard");
+		const todaysTableHtml = makeTable(
+			todaysLeaderboardData.leaderboardData
+		);
+		todaysTableElement.innerHTML = todaysTableHtml;
+
+		leaderboardSection.appendChild(todaysTableElement);
+	} else {
+		leaderboardSection.removeChild(todaysTable);
+	}
+}
+
+globalLeaderboardBtn.addEventListener("click", () => {
+	toggleGlobalTable();
+	toggeTodaysTable();
+});
+todaysLeaderboardBtn.addEventListener("click", () => {
+	toggleGlobalTable();
+	toggeTodaysTable();
+});

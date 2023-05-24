@@ -24,8 +24,8 @@ export const body = document.querySelector("body");
 export const globalLeaderboardBtn = document.querySelector(
 	"#global_leaderboard_btn"
 );
-export const personalLeaderboardBtn = document.querySelector(
-	"#personal_leaderboard_btn"
+export const todaysLeaderboardBtn = document.querySelector(
+	"#todays_leaderboard_btn"
 );
 export const personalLeaderboardTable = document.querySelector(
 	"#personal_leaderboard_table"
