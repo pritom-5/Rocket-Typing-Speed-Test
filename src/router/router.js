@@ -9,9 +9,9 @@ import getLeaderboard, {
 const router = express.Router();
 
 router.route("/").get(getHomePage);
-router.route("/getRandomText").get(getTextParagraph);
-router.route("/postUserInfo").post(postUserInfo);
-router.route("/getLeaderboard").get(getLeaderboard);
-router.route("/getTodaysLeaderboard").get(getTodaysLeaderboard);
+router.route("/api/getRandomText").get(getTextParagraph);
+router.route("/api/postUserInfo").post(postUserInfo);
+router.route("/api/getLeaderboard").get(getLeaderboard);
+router.route("/api/getTodaysLeaderboard").get(getTodaysLeaderboard);
 
 export default router;

@@ -49,7 +49,7 @@ async function getUsernameOnSubmit(usernameInput) {
 		time: TIME,
 	};
 
-	const responseData = await postData(userInfoObj, "/postUserInfo");
+	const responseData = await postData(userInfoObj, "/api/postUserInfo");
 
 	// TODO:
 	// add some notification to show the data is added to the global board

@@ -50,7 +50,7 @@ async function toggleGlobalTable() {
 		const globalTableElement = document.createElement("div");
 		globalTableElement.setAttribute("id", "global_leaderboard_table");
 
-		const globalLeaderboardData = await getData("/getLeaderboard");
+		const globalLeaderboardData = await getData("/api/getLeaderboard");
 		const globalTableHtml = makeTable(
 			globalLeaderboardData.leaderboardData
 		);
@@ -76,7 +76,7 @@ async function toggeTodaysTable() {
 		const todaysTableElement = document.createElement("div");
 		todaysTableElement.setAttribute("id", "todays_leaderboard_table");
 
-		const todaysLeaderboardData = await getData("/getTodaysLeaderboard");
+		const todaysLeaderboardData = await getData("/api/getTodaysLeaderboard");
 		const todaysTableHtml = makeTable(
 			todaysLeaderboardData.leaderboardData
 		);
