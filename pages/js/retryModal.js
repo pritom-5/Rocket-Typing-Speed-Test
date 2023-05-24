@@ -4,6 +4,7 @@ import {
 	typeTestInfo,
 	addToLeaderboardBtn,
 	usernameSubmitSection,
+	startBtn,
 } from "./selectors.js";
 import { postData, showNotification } from "./utils.js";
 
@@ -16,6 +17,7 @@ export default function retryModalToggle() {
 
 	if (isModalOpen) {
 		retryModal.close();
+		startBtn.focus();
 	} else {
 		retryModal.showModal();
 	}
@@ -33,10 +35,6 @@ export function setDynamicDataToModal(time, wpm, wordsCount) {
 
 retryBtn.addEventListener("click", retryModalToggle);
 
-// on addToLeaderboardBtn click new input field and button open
-// input field -> username
-// big submit button on this click { username, wpm, date, time } should be submitted to the backend
-
 async function getUsernameOnSubmit(usernameInput) {
 	const usernameInputValue = usernameInput.value;
 
@@ -50,11 +48,6 @@ async function getUsernameOnSubmit(usernameInput) {
 	};
 
 	const responseData = await postData(userInfoObj, "/api/postUserInfo");
-
-	// TODO:
-	// add some notification to show the data is added to the global board
-
-	console.log(responseData);
 
 	let type;
 	if (responseData.status !== 200) {

@@ -34,12 +34,10 @@ let currentWord = 0;
 
 async function resetPracticeSession() {
 	currentWord = 0;
+
 	const practiceText = await getRandomText();
 
-	practiceTextArr = practiceText.split(" ").map((word, index, arr) => {
-		if (index === arr.length - 1) return `${word}`;
-		return `${word} `;
-	});
+	practiceTextArr = practiceText.split(" ");
 	// later this array is edited
 	practiceTextArr_copy = [...practiceTextArr];
 	highlightedTextArr = [];
@@ -69,17 +67,29 @@ function setHighlightedText() {
 		resetPracticeSession();
 	}
 
-	textDisplay.innerText = practiceTextArr_copy.join("");
-	highlightedTextDisplay.innerText = highlightedTextArr.join("");
+	textDisplay.innerText = practiceTextArr_copy.join(" ");
+	highlightedTextDisplay.innerText = highlightedTextArr.join(" ");
 }
 
-wordInput.addEventListener("keyup", () => {
-	const inputText = wordInput.value;
+wordInput.addEventListener("keydown", (e) => {
+	// const inputText = wordInput.value;
+	let inputText;
 
-	if (inputText === practiceTextArr[currentWord]) {
-		++currentWord;
+	console.log(e.keyCode, inputText);
 
-		wordInput.value = "";
-		setHighlightedText();
+	if (e.keyCode === 32) {
+		inputText = e.target.value;
+
+		if (!inputText) return;
+
+		if (inputText.trim() === practiceTextArr[currentWord]) {
+			++currentWord;
+
+			wordInput.value = "";
+			setHighlightedText();
+		}
+
+		////////
+		console.log(currentWord, inputText);
 	}
 });
